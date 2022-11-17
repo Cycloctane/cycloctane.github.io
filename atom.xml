@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Octane的小站</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-11-16T15:07:16.261Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Octane</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Octane的TSCTF-J Writeup</title>
+    <link href="http://example.com/2022/11/TSCTF-J_WP/"/>
+    <id>http://example.com/2022/11/TSCTF-J_WP/</id>
+    <published>2022-11-16T12:00:00.000Z</published>
+    <updated>2022-11-16T15:07:16.261Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;</summary>
+      
+    
+    
+    
+    <category term="Writeup" scheme="http://example.com/categories/Writeup/"/>
+    
+    
+    <category term="CTF" scheme="http://example.com/tags/CTF/"/>
+    
+    <category term="Writeup" scheme="http://example.com/tags/Writeup/"/>
+    
+  </entry>
+  
+</feed>

@@ -14,7 +14,7 @@
     id="theme-color">
   <meta 
     name="description" 
-    content="Octane的博客">
+    content="Octane的小站">
   <link 
     rel="icon" 
     href="/">
@@ -45,7 +45,7 @@
         content="2022-11-16">
       <meta 
         property="og:article:modified_time" 
-        content="2022-11-16">
+        content="2022-11-17">
       <meta 
         property="og:article:author" 
         content="Octane">
@@ -68,6 +68,8 @@
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
   
   
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
   
   <script>
     function loadScript(url, cb) {
@@ -184,6 +186,9 @@
   
   
   
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
   
     <link rel="preload" href="/js/lib/lozad.min.js" as="script">
   
@@ -191,8 +196,12 @@
   
   
   
+    
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js" as="script">
   
-<meta name="generator" content="Hexo 5.4.2"></head>
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Octane的小站" type="application/atom+xml">
+</head>
 
   <body>
     <div class="wrapper">
@@ -451,7 +460,7 @@
     id="section" 
     class="post-content">
     <p>终于把博客搭好了…目前页面还比较简陋，但至少能上了（大概</p>
-<p>以后主要会在博客更新参加过的CTF的Writeup、做题和学习记录。也会贴一些可能没什么技术含量但是很步骤很麻烦的笔记，比如一些配置环境时遇到的问题和自己的解决方案。</p>
+<p>以后主要会在博客更新参加过的CTF的Writeup、做题和学习记录。也会贴一些可能没什么技术含量的笔记，比如一些配置环境时遇到的问题。</p>
 
   </div>
   <div>
@@ -498,6 +507,40 @@
   
   
 </div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="gitalk-container"></div>
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+  
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+  
+<script src="/js/lib/md5.min.js"></script>
+
+  <script>
+    var gitalk = new Gitalk({
+      clientID: '87676eedf964b1665e61',
+      clientSecret: '020583a46ae0f961abca03330ed97f52d9b470fe',
+      repo: 'cycloctane.github.io',
+      owner: 'Cycloctane',
+      admin: "Cycloctane",
+      id: md5(location.href),
+      distractionFreeMode: false,
+      language: 'navigator.language || navigator.userLanguage',
+      labels: ["Gitalk"],
+      perPage: 10
+    })
+
+    gitalk.render('gitalk-container')
+  </script>
+
+  </div>
 
 <div 
   class="card card-content toc-card" 
@@ -599,10 +642,6 @@
     
       <div class="footer-dsc">
         
-          本站总访问量<span id="busuanzi_value_site_pv"></span>次
-        
-        
-          <span>&nbsp;|&nbsp;</span>
         
         
           本站总访客数<span id="busuanzi_value_site_uv"></span>次
@@ -651,6 +690,36 @@
 </a> 
      
      
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
      
      
     <script src="/js/main.js"></script> 
