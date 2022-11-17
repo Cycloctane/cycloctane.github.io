@@ -205,7 +205,7 @@
   
   
     
-    <link rel="prefetch" href="//unpkg.com/valine/dist/Valine.min.js" as="script">
+    <link rel="prefetch" href="//cdn-city.livere.com/js/embed.dist.js" as="script">
   
   
 <meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Octane的小站" type="application/atom+xml">
@@ -915,34 +915,23 @@ io<span class="token punctuation">.</span>interactive<span class="token punctuat
     style="margin-top: 16px;">
     <div class="comment-card-title">评论</div>
     
-  <div id="vcomments"></div>
-  
-  <script>
-    loadScript("//unpkg.com/valine/dist/Valine.min.js");
-    var oldLoadVa = window.onload;
-    window.onload = function () {
-      oldLoadVa && oldLoadVa();
-      new Valine({
-        el: '#vcomments',
-        appId: 'w0F24MdK7ziIJrvbjX4isTlJ-MdYXbMMI',
-        appKey: 'LWcgB7ZQa3uiJVQ9Yk9JLo2w',
-        placeholder: 'hello',
-        path: window.location.pathname,
-        avatar: 'mp',
-        meta: ["nick","mail","link"],
-        pageSize: '12',
-        lang: '',
-        visitor: 'true',
-        highlight: true,
-        recordIP: false,
-        
-        
-        
-        enableQQ: 'false',
-        requiredFields: [],
-      });
-    };
-  </script>
+  <div 
+    id="lv-container" 
+    data-id="city" 
+    data-uid="MTAyMC81NzY0NC8zNDEwNw==">
+    <script>
+      (function (d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') {
+          return;
+        }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.defer = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  </div>
 
   </div>
 
