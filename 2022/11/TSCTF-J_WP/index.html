@@ -28,7 +28,7 @@
     
       <meta 
         property="og:url" 
-        content="http://example.com/2022/11/TSCTF-J_WP/index.html">
+        content="https://cycloctane.github.io/2022/11/TSCTF-J_WP/index.html">
     
     
       <meta 
@@ -205,7 +205,7 @@
   
   
     
-    <link rel="prefetch" href="//cdn-city.livere.com/js/embed.dist.js" as="script">
+    <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js" as="script">
   
   
 <meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Octane的小站" type="application/atom+xml">
@@ -360,7 +360,7 @@
       </div>
     
       <div class="author-card-society-icon">
-        <a target="_blank" rel="noopener" href="https://cycloctane.github.io/trackerslist.txt">
+        <a href="https://cycloctane.github.io/trackerslist.txt">
           <i class="iconfont icon-chrome society-icon"></i>
         </a>
       </div>
@@ -882,8 +882,8 @@ io<span class="token punctuation">.</span>interactive<span class="token punctuat
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="http://example.com/2022/11/TSCTF-J_WP/">
-            http://example.com/2022/11/TSCTF-J_WP/
+            href="https://cycloctane.github.io/2022/11/TSCTF-J_WP/">
+            https://cycloctane.github.io/2022/11/TSCTF-J_WP/
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>转载请注明出处！</p>
@@ -915,23 +915,36 @@ io<span class="token punctuation">.</span>interactive<span class="token punctuat
     style="margin-top: 16px;">
     <div class="comment-card-title">评论</div>
     
-  <div 
-    id="lv-container" 
-    data-id="city" 
-    data-uid="MTAyMC81NzY0NC8zNDEwNw==">
-    <script>
-      (function (d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') {
-          return;
-        }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.defer = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  </div>
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'YTfylcmjjykCaUDdxswv7KLB-gzGzoHsz',
+        appKey: 'KeL0Zx7FGhq6MV3RH1pzcNiH',
+        placeholder: '(/≧▽≦)/',
+        path: window.location.pathname,
+        avatar: 'mp',
+        meta: ["nick","mail","link"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'true',
+        highlight: true,
+        recordIP: true,
+        
+        serverURLs: 'https://ytfylcmj.lc-cn-n1-shared.com',
+        
+        
+        
+        enableQQ: 'true',
+        requiredFields: [],
+      });
+    };
+  </script>
 
   </div>
 
