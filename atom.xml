@@ -6,7 +6,7 @@
   <link href="https://cycloctane.github.io/atom.xml" rel="self"/>
   
   <link href="https://cycloctane.github.io/"/>
-  <updated>2022-11-17T13:05:46.829Z</updated>
+  <updated>2022-11-20T03:46:30.943Z</updated>
   <id>https://cycloctane.github.io/</id>
   
   <author>
@@ -20,8 +20,8 @@
     <title>Octane的TSCTF-J Writeup</title>
     <link href="https://cycloctane.github.io/posts/5352/index.html"/>
     <id>https://cycloctane.github.io/posts/5352/index.html</id>
-    <published>2022-11-16T12:00:00.000Z</published>
-    <updated>2022-11-17T13:05:46.829Z</updated>
+    <published>2022-11-16T13:00:00.000Z</published>
+    <updated>2022-11-20T03:46:30.943Z</updated>
     
     
       
@@ -41,11 +41,11 @@
   </entry>
   
   <entry>
-    <title>Hello_World</title>
-    <link href="https://cycloctane.github.io/posts/61920/index.html"/>
-    <id>https://cycloctane.github.io/posts/61920/index.html</id>
-    <published>2022-11-16T11:00:00.000Z</published>
-    <updated>2022-11-17T13:05:46.819Z</updated>
+    <title>(水)关于linux系统网卡驱动的安装</title>
+    <link href="https://cycloctane.github.io/posts/17920/index.html"/>
+    <id>https://cycloctane.github.io/posts/17920/index.html</id>
+    <published>2022-11-16T11:30:00.000Z</published>
+    <updated>2022-11-20T03:46:36.617Z</updated>
     
     
       
@@ -55,6 +55,10 @@
     
     
     
+    <category term="notes" scheme="https://cycloctane.github.io/categories/notes/"/>
+    
+    
+    <category term="notes" scheme="https://cycloctane.github.io/tags/notes/"/>
     
   </entry>
   
