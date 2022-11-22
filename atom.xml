@@ -6,7 +6,7 @@
   <link href="https://cycloctane.github.io/atom.xml" rel="self"/>
   
   <link href="https://cycloctane.github.io/"/>
-  <updated>2022-11-20T03:46:30.943Z</updated>
+  <updated>2022-11-22T07:11:38.441Z</updated>
   <id>https://cycloctane.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Octane的moeCTF_2022 Writeup</title>
+    <link href="https://cycloctane.github.io/posts/36640/index.html"/>
+    <id>https://cycloctane.github.io/posts/36640/index.html</id>
+    <published>2022-11-22T07:00:00.000Z</published>
+    <updated>2022-11-22T07:11:38.441Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;</summary>
+      
+    
+    
+    
+    <category term="Writeup" scheme="https://cycloctane.github.io/categories/Writeup/"/>
+    
+    
+    <category term="CTF" scheme="https://cycloctane.github.io/tags/CTF/"/>
+    
+    <category term="Writeup" scheme="https://cycloctane.github.io/tags/Writeup/"/>
+    
+  </entry>
   
   <entry>
     <title>Octane的TSCTF-J Writeup</title>
@@ -37,28 +61,6 @@
     <category term="CTF" scheme="https://cycloctane.github.io/tags/CTF/"/>
     
     <category term="Writeup" scheme="https://cycloctane.github.io/tags/Writeup/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>(水)关于linux系统网卡驱动的安装</title>
-    <link href="https://cycloctane.github.io/posts/17920/index.html"/>
-    <id>https://cycloctane.github.io/posts/17920/index.html</id>
-    <published>2022-11-16T11:30:00.000Z</published>
-    <updated>2022-11-20T03:46:36.617Z</updated>
-    
-    
-      
-      
-    <summary type="html">&lt;</summary>
-      
-    
-    
-    
-    <category term="notes" scheme="https://cycloctane.github.io/categories/notes/"/>
-    
-    
-    <category term="notes" scheme="https://cycloctane.github.io/tags/notes/"/>
     
   </entry>
   
