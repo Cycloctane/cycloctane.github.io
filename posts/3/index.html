@@ -14,7 +14,7 @@
     id="theme-color">
   <meta 
     name="description" 
-    content="Octane的小站">
+    content="Octane的博客">
   <link 
     rel="icon" 
     href="/">
@@ -28,7 +28,7 @@
     
       <meta 
         property="og:url" 
-        content="https://cycloctane.github.io/posts/5352/index.html">
+        content="https://cycloctane.github.io/posts/3/index.html">
     
     
       <meta 
@@ -211,7 +211,7 @@
     <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js" as="script">
   
   
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Octane的小站" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Octane的博客" type="application/atom+xml">
 </head>
 
   <body>
@@ -221,7 +221,7 @@
   <div class="navbar-logo">
     <a class="navbar-logo-main" href="/">
       
-      <span class="navbar-logo-dsc">Octane的小站</span>
+      <span class="navbar-logo-dsc">Octane的博客</span>
       </a>
   </div>
   <div class="navbar-menu">
@@ -326,7 +326,7 @@
     alt="author avatar">
 
 <p class="author-name">Octane</p>
-<p class="author-description">Octane? Octane!</p>
+<p class="author-description">OctaneOctaneOctane</p>
 <div class="author-message">
   <a 
     class="author-posts-count" 
@@ -526,7 +526,7 @@
 <p>Misc的各种图片隐写和压缩包隐写的题型是一道也没考（之前看了去年的隐写题还有点期待今年的来着）。和编码有关的题还出在了Crypto板块中。虽然说隐写题只是和出题人对电波而已…但感觉Black_Tea才是更电波的啊，没见过这种问题就完全没有头绪，上网搜都不知道该搜什么orz。Misc的游戏题确实挺好玩的，也辛苦游戏制作者了。</p>
 <p>比赛题目存档和官方wp：<a target="_blank" rel="noopener" href="https://github.com/MakeMerakGreatAgain/tsctf-j_2022">https://github.com/MakeMerakGreatAgain/tsctf-j_2022</a></p>
 <h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="Baby-xor"><a href="#Baby-xor" class="headerlink" title="Baby_xor"></a>Baby_xor</h2><p>&ensp;&ensp;&ensp;&ensp;签到题,放进IDA里直接F5，可以看到代码。</p>
-<p><img src="./images/1_001.png" alt="Baby_xor" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/1_001.png" class="lozad post-image"></p>
+<p><img src="/images/003_001.png" alt="Baby_xor" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/003_001.png" class="lozad post-image"></p>
 <p>&ensp;&ensp;&ensp;&ensp;数组data[ ]中每个元素分别与i和0x46进行异或运算即可得到flag</p>
 <p>&ensp;&ensp;&ensp;&ensp;解题脚本：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span> <span class="token comment"># 输入略</span>
@@ -537,7 +537,7 @@ out<span class="token punctuation">.</span>append<span class="token punctuation"
 <span class="token comment"># TSCTF-J&#123;W3lC0M3_2_ReVEr$E^xOr_1s_$O0o_e2&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&ensp;&ensp;</p>
 <h2 id="Byte-code"><a href="#Byte-code" class="headerlink" title="Byte_code"></a>Byte_code</h2><p>&ensp;&ensp;&ensp;&ensp;题目给了一个txt文件，打开后是这样的代码：</p>
-<p><img src="./images/1_002.png" alt="Byte_code" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/1_002.png" class="lozad post-image"></p>
+<p><img src="/images/003_002.png" alt="Byte_code" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/003_002.png" class="lozad post-image"></p>
 <p>&ensp;&ensp;&ensp;&ensp;上网查了一下，这个是Python的字节码。用python -m dis命令即可将py文件转换为字节码。原来想找一个可以将字节码直接转换回py文件的程序，但代码看起来并没有很长，就干脆直接自己对照着字节码写出python代码，每写一行就编译成字节码和原文件对照。最后还原出来的python脚本是这样的，再运行一下就可以得到flag。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">a<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">114</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">,</span> <span class="token number">118</span><span class="token punctuation">,</span><span class="token number">101</span><span class="token punctuation">,</span><span class="token number">114</span><span class="token punctuation">,</span><span class="token number">115</span><span class="token punctuation">,</span><span class="token number">101</span><span class="token punctuation">,</span><span class="token number">95</span><span class="token punctuation">,</span><span class="token number">116</span><span class="token punctuation">,</span><span class="token number">104</span><span class="token punctuation">,</span><span class="token number">101</span><span class="token punctuation">,</span><span class="token number">95</span><span class="token punctuation">,</span><span class="token number">98</span><span class="token punctuation">,</span><span class="token number">121</span><span class="token punctuation">,</span><span class="token number">116</span><span class="token punctuation">,</span><span class="token number">101</span><span class="token punctuation">]</span>
 b<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">99</span><span class="token punctuation">,</span><span class="token number">111</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">101</span><span class="token punctuation">,</span><span class="token number">95</span><span class="token punctuation">,</span><span class="token number">116</span><span class="token punctuation">,</span><span class="token number">111</span><span class="token punctuation">,</span><span class="token number">95</span><span class="token punctuation">,</span><span class="token number">103</span><span class="token punctuation">,</span><span class="token number">101</span><span class="token punctuation">,</span><span class="token number">116</span><span class="token punctuation">,</span><span class="token number">95</span><span class="token punctuation">,</span><span class="token number">102</span><span class="token punctuation">,</span><span class="token number">108</span><span class="token punctuation">,</span><span class="token number">97</span><span class="token punctuation">,</span><span class="token number">103</span><span class="token punctuation">]</span>
@@ -668,22 +668,22 @@ m3 <span class="token operator">=</span> long_to_bytes<span class="token punctua
 
 <span class="token comment"># TSCTF-J&#123;T0niii_is_the_most_handsome_boy_in_BUPT&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>&ensp;&ensp;</p>
-<h2 id="Nonograms"><a href="#Nonograms" class="headerlink" title="Nonograms"></a>Nonograms</h2><p><img src="./images/1_003.png" alt="Nonograms" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/1_003.png" class="lozad post-image"></p>
+<h2 id="Nonograms"><a href="#Nonograms" class="headerlink" title="Nonograms"></a>Nonograms</h2><p><img src="/images/003_003.png" alt="Nonograms" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/003_003.png" class="lozad post-image"></p>
 <p>&ensp;&ensp;&ensp;&ensp;似乎是某种填字游戏，总共14张图。曾经在steam玩过玩法类似的SquareCells。</p>
 <p>&ensp;&ensp;&ensp;&ensp;hint提示用画图的填充工具做，本想找到一个可以在线解密的网站。但最后还是自己做了。</p>
 <p>&ensp;&ensp;&ensp;&ensp;先在前几个挑了几个简单的做，得到这个</p>
-<p><img src="./images/1_004.png" alt="Nonograms" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/1_004.png" class="lozad post-image"></p>
+<p><img src="/images/003_004.png" alt="Nonograms" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/003_004.png" class="lozad post-image"></p>
 <p>&ensp;&ensp;&ensp;&ensp;由此可知前8个图是’TSCTF-J{‘。最后一个图是’}’。因此中间9-13五张图才是flag的实际内容。</p>
-<p><img src="./images/1_005.png" alt="Nonograms" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/1_005.png" class="lozad post-image"></p>
+<p><img src="/images/003_005.png" alt="Nonograms" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/003_005.png" class="lozad post-image"></p>
 <p>&ensp;&ensp;&ensp;&ensp;由此很容易可以猜测出flag：</p>
 <blockquote>
 <p>TSCTF-J{旗开得勝！}</p>
 </blockquote>
 <p>&ensp;&ensp;</p>
-<h2 id="Two-Keys"><a href="#Two-Keys" class="headerlink" title="Two Keys"></a>Two Keys</h2><p><img src="./images/1_006.png" alt="Two_Keys" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/1_006.png" class="lozad post-image"></p>
+<h2 id="Two-Keys"><a href="#Two-Keys" class="headerlink" title="Two Keys"></a>Two Keys</h2><p><img src="/images/003_006.png" alt="Two_Keys" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/003_006.png" class="lozad post-image"></p>
 <p>&ensp;&ensp;&ensp;&ensp;由题目描述可知flag分为两段，分别用key和KEY加密。</p>
 <p>&ensp;&ensp;&ensp;&ensp;第一段flag用RSA加密，p、q、phi都是已知的，而e就是key，即是Question1的答案。</p>
-<p><img src="./images/1_007.png" alt="Two_Keys" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/1_007.png" class="lozad post-image"></p>
+<p><img src="/images/003_007.png" alt="Two_Keys" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/003_007.png" class="lozad post-image"></p>
 <p>&ensp;&ensp;&ensp;&ensp;询问出题人这个问题的具体规则，得知不能走回头路，整个过程只能网上或往右走。</p>
 <p>&ensp;&ensp;&ensp;&ensp;虽然不会算这种问题，但可以估计最终的答案不会非常大。<del>能爆破的题为什么还要动脑算？</del></p>
 <p>&ensp;&ensp;&ensp;&ensp;于是写一个脚本直接爆破e解密，从而得到第一段flag。</p>
@@ -710,7 +710,7 @@ e <span class="token operator">=</span> <span class="token number">1</span>
 <p>&ensp;&ensp;&ensp;&ensp;Qustion2：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Question 2:\n\nKEY is a string of 8 lowercase letter.\n\nsha256(KEY) == 2b87ea3983c646fcecc476f6930c18bf75935cab40471930f560bef2f370b82e and len(KEY) == 8\n"</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>&ensp;&ensp;&ensp;&ensp;第二段flag用DES加密，密钥KEY就是Question2的答案。Question2给出了KEY的sha256哈希值，并且已知KEY由八个小写英文字母组成。于是用hashcat进行哈希碰撞得到KEY：</p>
-<p><img src="./images/1_008.jpeg" alt="Two_Keys" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/1_008.jpeg" class="lozad post-image"></p>
+<p><img src="/images/003_008.jpeg" alt="Two_Keys" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/003_008.jpeg" class="lozad post-image"></p>
 <p>&ensp;&ensp;&ensp;&ensp;很快就可以解出KEY是’vmefifty’。用KEY解密DES密文即可得到第二段flag：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Cipher <span class="token keyword">import</span> DES
 
@@ -938,8 +938,8 @@ io<span class="token punctuation">.</span>interactive<span class="token punctuat
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="https://cycloctane.github.io/posts/5352/index.html">
-            https://cycloctane.github.io/posts/5352/index.html
+            href="https://cycloctane.github.io/posts/3/index.html">
+            https://cycloctane.github.io/posts/3/index.html
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>转载请注明出处！</p>
@@ -951,7 +951,7 @@ io<span class="token punctuation">.</span>interactive<span class="token punctuat
   
     <div class="nav-item-prev">
       <a 
-        href="/posts/36640/index.html" 
+        href="/posts/4/index.html" 
         class="nav-link">
         <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
@@ -966,7 +966,7 @@ io<span class="token punctuation">.</span>interactive<span class="token punctuat
   
     <div class="nav-item-next">
       <a 
-        href="/posts/17920/index.html" 
+        href="/posts/2/index.html" 
         class="nav-link">
         <div>
           <div class="nav-label">下一篇</div>
@@ -1057,22 +1057,22 @@ io<span class="token punctuation">.</span>interactive<span class="token punctuat
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-11-22</div>
-        <a href="/posts/36640/index.html"><div class="recent-posts-item-content">Octane的moeCTF_2022 Writeup</div></a>
+        <a href="/posts/4/index.html"><div class="recent-posts-item-content">Octane的moeCTF_2022 Writeup</div></a>
       </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-11-16</div>
-        <a href="/posts/5352/index.html"><div class="recent-posts-item-content">Octane的TSCTF-J Writeup</div></a>
+        <a href="/posts/3/index.html"><div class="recent-posts-item-content">Octane的TSCTF-J Writeup</div></a>
       </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-11-16</div>
-        <a href="/posts/17920/index.html"><div class="recent-posts-item-content">(水)关于linux系统网卡驱动的安装</div></a>
+        <a href="/posts/2/index.html"><div class="recent-posts-item-content">(水)关于linux系统网卡驱动的安装</div></a>
       </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-11-16</div>
-        <a href="/posts/61920/index.html"><div class="recent-posts-item-content">Hello_World</div></a>
+        <a href="/posts/1/index.html"><div class="recent-posts-item-content">Hello_World</div></a>
       </div>
     
   </div>
@@ -1102,7 +1102,7 @@ io<span class="token punctuation">.</span>interactive<span class="token punctuat
         <a 
           href="/" 
           class="footer-link">
-          Octane的小站
+          Octane的博客
         </a>
       </div>
     </div>

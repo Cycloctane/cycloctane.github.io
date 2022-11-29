@@ -14,26 +14,26 @@
     id="theme-color">
   <meta 
     name="description" 
-    content="Octane的小站">
+    content="Octane的博客">
   <link 
     rel="icon" 
     href="/">
-  <title>(水)关于linux系统网卡驱动的安装</title>
+  <title>Hello_World</title>
   
     
       <meta 
         property="og:title" 
-        content="(水)关于linux系统网卡驱动的安装">
+        content="Hello_World">
     
     
       <meta 
         property="og:url" 
-        content="https://cycloctane.github.io/posts/17920/index.html">
+        content="https://cycloctane.github.io/posts/1/index.html">
     
     
       <meta 
         property="og:img" 
-        content="https://pic.imgdb.cn/item/6374dfbb16f2c2beb1618381.png">
+        content="https://pic.imgdb.cn/item/6374d8c916f2c2beb156e4ed.png">
     
     
     
@@ -45,15 +45,11 @@
         content="2022-11-16">
       <meta 
         property="og:article:modified_time" 
-        content="2022-11-20">
+        content="2022-11-28">
       <meta 
         property="og:article:author" 
         content="Octane">
       
-        
-          <meta 
-            property="og:article:tag" 
-            content="notes">
         
       
     
@@ -207,7 +203,7 @@
     <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js" as="script">
   
   
-<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Octane的小站" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Octane的博客" type="application/atom+xml">
 </head>
 
   <body>
@@ -217,7 +213,7 @@
   <div class="navbar-logo">
     <a class="navbar-logo-main" href="/">
       
-      <span class="navbar-logo-dsc">Octane的小站</span>
+      <span class="navbar-logo-dsc">Octane的博客</span>
       </a>
   </div>
   <div class="navbar-menu">
@@ -322,7 +318,7 @@
     alt="author avatar">
 
 <p class="author-name">Octane</p>
-<p class="author-description">Octane? Octane!</p>
+<p class="author-description">OctaneOctaneOctane</p>
 <div class="author-message">
   <a 
     class="author-posts-count" 
@@ -378,7 +374,7 @@
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01-RTL8192FU"><span class="toc-number">1.</span> <span class="toc-text">0x01 RTL8192FU</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%BD%91%E5%8D%A1%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">连接网卡？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.2.</span> <span class="toc-text">寻找网卡驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%B9%B6%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.3.</span> <span class="toc-text">编译并安装驱动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-RTL8192EU"><span class="toc-number">2.</span> <span class="toc-text">0x02 RTL8192EU</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x03-%E6%80%BB%E7%BB%93%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">0x03 总结？</span></a></li></ol>
+
       </div>
     </article>
   
@@ -448,14 +444,23 @@
             </aside>
             <main class="main-column">
               
+  <div class="image-wrapper">
+    <img 
+      src="https://pic.imgdb.cn/item/6374d8c916f2c2beb156e4ed.png" 
+      data-src="https://pic.imgdb.cn/item/6374d8c916f2c2beb156e4ed.png"
+      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
+      class="image lozad"
+      alt="Hello_World thumbnail">
+  </div>
+
 <article class="card card-content">
   <header>
     <h1 class="post-title">
-      (水)关于linux系统网卡驱动的安装
+      Hello_World
     </h1>
   </header>
   <div class="post-meta post-show-meta">
-    <time datetime="2022-11-16T11:30:00.000Z">
+    <time datetime="2022-11-16T11:00:00.000Z">
       <i 
         class="iconfont icon-calendar" 
         style="margin-right: 2px;">
@@ -463,81 +468,15 @@
       <span>2022-11-16</span>
     </time>
     
-      <span class="dot"></span>
-      
-        <a 
-          href="/categories/notes/" 
-          class="post-meta-link">
-          notes
-        </a>
-      
-    
     
   </div>
-  
-    <div 
-      class="post-meta post-show-meta" 
-      style="margin-top: -10px;">
-      <div style="display: flex; align-items: center;">
-        <i 
-          class="iconfont icon-biaoqian" 
-          style="margin-right: 2px; font-size: 1.15rem;">
-        </i>
-        
-          
-          <a 
-            href="/tags/notes/" 
-            class="post-meta-link">
-            notes
-          </a>
-        
-      </div>
-    </div>
   
   </header>
   <div 
     id="section" 
     class="post-content">
-    <p>作为一个刚刚接触linux系统的小白，目前还在熟悉linux下一些基本操作的方法。（Debian系统）</p>
-<p>刚好有个闲置的usb无线网卡，是Tenda的某个型号。想把它安装在linux上来连接学校的无线网。</p>
-<p>连接在电脑上之后发现识别不了网卡。于是花了点时间解决这件事情。虽然没什么技术含量，但很多东西也是我第一次接触，因此在这里记录一下步骤和踩过的坑。</p>
-<h1 id="0x01-RTL8192FU"><a href="#0x01-RTL8192FU" class="headerlink" title="0x01 RTL8192FU"></a>0x01 RTL8192FU</h1><h2 id="连接网卡？"><a href="#连接网卡？" class="headerlink" title="连接网卡？"></a>连接网卡？</h2><p>&ensp;&ensp;&ensp;&ensp;先用lsusb查看一下usb网卡有没有正确连接到linux上。</p>
-<p><img src="./images/001.jpg" alt="001" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/001.jpg" class="lozad post-image"></p>
-<p>&ensp;&ensp;&ensp;&ensp;正常来说网卡在lsusb上会显示为 WLAN Adapter，在这里却显示为DISK。突然想起这个网卡是“免驱型”，插在windows系统上不会立刻显示为网卡，而是显示为一个CD-ROM来提供windows下的驱动安装程序，将CD驱动器右键弹出才能作为网卡使用。</p>
-<p><img src="./images/002.png" alt="002" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/002.png" class="lozad post-image"></p>
-<p>&ensp;&ensp;&ensp;&ensp;查阅网络了解到，linux命令行中实现该操作的命令是”eject”。先在debian软件包仓库手动下载一个eject的.deb包，再离线拷贝到linux系统上安装，将 /dev/sr0 分区弹出，然后就可以在lsusb看到网卡了。（如果安装的是Desktop版linux，直接右键光盘点弹出即可）</p>
-<p><img src="./images/003.jpg" alt="003" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/003.jpg" class="lozad post-image"></p>
-<h2 id="寻找网卡驱动"><a href="#寻找网卡驱动" class="headerlink" title="寻找网卡驱动"></a>寻找网卡驱动</h2><p>&ensp;&ensp;&ensp;&ensp;因为之前在windows下用过这个usb网卡，所以知道芯片是RTL8192FU。因此直接按照网卡芯片的型号在github上搜索驱动的源代码。<a target="_blank" rel="noopener" href="https://github.com/BrightX/rtl8192fu">https://github.com/BrightX/rtl8192fu</a></p>
-<p>&ensp;&ensp;&ensp;&ensp;下载解压出来拷贝到U盘，插到linux上。</p>
-<h2 id="编译并安装驱动"><a href="#编译并安装驱动" class="headerlink" title="编译并安装驱动"></a>编译并安装驱动</h2><p>&ensp;&ensp;&ensp;&ensp;网卡驱动应该和一般的程序安装步骤差不多，首先要从官网下载对应版本的linux-header内核头文件并拷贝到linux安装，然后在程序的源代码根目录下建立Makefile，用make和make install编译安装。</p>
-<p>&ensp;&ensp;&ensp;&ensp;在根目录下已经发现了Makefile，直接 make &amp; make install即可安装驱动。</p>
-<blockquote>
-<p>有些linux系统发行版（比如Ubuntu LTS 22.04），刚装好系统时甚至连安装网卡驱动需要的编译环境（gcc编译器、make）都没有。而在没有网卡驱动，无法联网的情况下也不可能用apt包管理器来安装这些工具。对于一些比较简单的程序，可以直接去系统的官方软件包仓库<a target="_blank" rel="noopener" href="https://www.debian.org/distrib/packages">https://www.debian.org/distrib/packages</a>在线下载.deb包，再拷贝到linux上用dpkg离线安装。但对于gcc、make这样的程序，依赖的库比较多。对应着依赖关系表，挨个手动下载.deb包是一件非常折磨的事情。</p>
-<p>这种情况下有一个比较自动的解决方案，就是在自己的电脑上配置一个和该linux系统相同的虚拟机，将该虚拟机连接网络，在该虚拟机上安装apt-rdepends</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Octane@vmware:~$ <span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> apt-rdepends<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这个工具可以帮助我们获取一个软件包的依赖。我们可以利用这个工具配合apt下载软件包依赖的所有包和库。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Octane@vmware:~$ <span class="token function">apt-get</span> download <span class="token variable"><span class="token variable">$(</span>apt-rdepends gcc <span class="token function">make</span><span class="token operator">|</span><span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token string">"^ "</span><span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后将下载的.deb软件包拷贝到linux系统上，用dpkg安装即可。</p>
-<p>但要注意，这个方法一定要在和需要安装依赖的linux系统版本<strong>完全相同</strong>的虚拟机上使用。如果用的系统有区别，即使使用的包管理器是相同的（如Ubuntu和Kali），但由于不同linux版本使用的软件包仓库不同，安装后本地依赖关系会变得一团糟。虽然此时有了gcc和make，可以编译和安装网卡驱动，也可以正常联网，但连上网后apt无法安装或卸载任何软件包，aptitude都没法安装了，也无法自动修复依赖关系。我当时到这里没有办法让系统恢复正常，只能重装了orz。</p>
-</blockquote>
-<p><img src="./images/004.jpg" alt="004" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/004.jpg" class="lozad post-image"></p>
-<p>&ensp;&ensp;&ensp;&ensp;但安装过程中出现了一个报错。大概的意思是Makefile的修改时间要比系统时间要晚，因此编译很可能失败。这是因为刚烧录好的系统，系统时间是比较之前的，而且在没有联网的情况下也无法同步时间到最新。为解决这个问题，将系统时间手动调整，调到Makefile的修改时间之后即可。用make clean清理一下，再用make重新编译。</p>
-<p>&ensp;&ensp;&ensp;&ensp;然后make install，顺利地安装上了网卡驱动。</p>
-<p>&ensp;&ensp;&ensp;&ensp;此时用nmcli dev wifi搜索网络，可以正常连接portal校园网，至此网卡安装完毕。</p>
-<p>&ensp;&ensp;&ensp;&ensp;至于校园网的连接，我使用的这个linux没有安装x-server，也就是说不能用有图形界面的浏览器。但对于linux的命令行，有一个傻瓜式文本浏览器w3m可供使用。用这个浏览器可以轻松在页面填写账号登录校园网。</p>
-<h1 id="0x02-RTL8192EU"><a href="#0x02-RTL8192EU" class="headerlink" title="0x02 RTL8192EU"></a>0x02 RTL8192EU</h1><p>&ensp;&ensp;&ensp;&ensp;又是另外一个USB无线网卡，芯片是8192EU。似乎要比8192FU友好一些，插入电脑就能自动用lsusb识别到型号，ifconfig也可以识别到网卡。但信号似乎很差，而且网络完全连不上…</p>
-<p><img src="./images/005.jpg" alt="005" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="./images/005.jpg" class="lozad post-image"></p>
-<p>&ensp;&ensp;&ensp;&ensp;看来还是要装驱动。于是又从Github搜索到了相应的驱动。</p>
-<p>&ensp;&ensp;&ensp;&ensp;老办法，解压，拷贝，Make &amp; Make install 安装…一切看起来都很顺利，再连接一下网络，为什么还是和之前一样无法连接??难道网卡是坏掉的…?</p>
-<p>&ensp;&ensp;&ensp;&ensp;上网查阅了一下资料，linux内核模块本身就带有支持RTL系无线网卡的驱动（rtl8xxxu），而RTL8192EU是兼容这个驱动的，因此能被linux自动识别的。信号不好和无法连接是由于这个驱动对这个网卡的支持比较差。用 make &amp; make install 安装该驱动后，设备使用的还是内核的驱动。因此想要让我们安装的驱动发挥作用，就需要把内核模块中默认的rtl8xxxu驱动换掉。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">sudo</span> rmmod rtl8xxxu
-octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">sudo</span> <span class="token builtin class-name">echo</span> <span class="token string">"blacklist rtl8xxxu"</span> <span class="token operator">>></span> /etc/modprobe.d/blcaklist-rtl8xxxu.conf
-octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">cp</span> <span class="token parameter variable">-ar</span> <span class="token builtin class-name">.</span> /usr/src/rtl8192eu-1.0
-octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">sudo</span> dkms <span class="token function">add</span> <span class="token parameter variable">-m</span> rtl8192eu <span class="token parameter variable">-v</span> <span class="token number">1.0</span>
-octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">sudo</span> dkms <span class="token function">install</span> <span class="token parameter variable">-m</span> rtl8192eu <span class="token parameter variable">-v</span> <span class="token number">1.0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>&ensp;&ensp;&ensp;&ensp;然后就可以正常使用了。性能感觉比8192FU还好一些。</p>
-<p>&ensp;&ensp;&ensp;&ensp;而之前的RTL8192FU，由于它本身就不兼容内核中的rtl8xxxu驱动。因此用 make &amp; make install 直接安装驱动，不将驱动整合进linux内核也可以使用。</p>
-<h1 id="0x03-总结？"><a href="#0x03-总结？" class="headerlink" title="0x03 总结？"></a>0x03 总结？</h1><p>&ensp;&ensp;&ensp;&ensp;总之，最好的办法就是使用与linux内核兼容的网卡。大多数笔记本内置的intel无线网卡一般都是内核自带驱动的，实测AC3165、AC9560、AX200、AX211都可以直接兼容linux5.，不用安装驱动就能很好地工作。需要usb无线网卡时优先选择标明网卡芯片的型号的。其次再选非免驱版，自己查看网卡芯片型号并安装驱动。免驱版因为有一个驱动安装的分区，每次使用前要先弹出一下，对linux的使用不是很友好。</p>
+    <p>终于把博客搭好了…目前页面还比较简陋，但至少能上了（大概</p>
+<p>以后主要会在博客更新参加过的CTF的Writeup、做题和学习记录。也会贴一些可能没什么技术含量的笔记，比如一些配置环境时遇到的问题。</p>
 
   </div>
   <div>
@@ -557,8 +496,8 @@ octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">su
           <span style="font-weight: bold;">文章链接：</span><a 
             target="_blank" 
             rel="nofollow noopener noreferrer" 
-            href="https://cycloctane.github.io/posts/17920/index.html">
-            https://cycloctane.github.io/posts/17920/index.html
+            href="https://cycloctane.github.io/posts/1/index.html">
+            https://cycloctane.github.io/posts/1/index.html
           </a>
         </p>
         <p><span style="font-weight: bold;">版权声明：</span>转载请注明出处！</p>
@@ -570,32 +509,18 @@ octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">su
   
     <div class="nav-item-prev">
       <a 
-        href="/posts/5352/index.html" 
+        href="/posts/2/index.html" 
         class="nav-link">
         <i class="iconfont icon-left nav-prev-icon"></i>
         <div>
           <div class="nav-label">上一篇</div>
           
-            <div class="nav-title">Octane的TSCTF-J Writeup </div>
+            <div class="nav-title">(水)关于linux系统网卡驱动的安装 </div>
           
         </div>
       </a>
     </div>
   
-  
-    <div class="nav-item-next">
-      <a 
-        href="/posts/61920/index.html" 
-        class="nav-link">
-        <div>
-          <div class="nav-label">下一篇</div>
-          
-            <div class="nav-title">Hello_World </div>
-          
-        </div>
-        <i class="iconfont icon-right nav-next-icon"></i>
-      </a>
-    </div>
   
 </div>
 
@@ -646,7 +571,7 @@ octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">su
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01-RTL8192FU"><span class="toc-number">1.</span> <span class="toc-text">0x01 RTL8192FU</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%BD%91%E5%8D%A1%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">连接网卡？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.2.</span> <span class="toc-text">寻找网卡驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%B9%B6%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.3.</span> <span class="toc-text">编译并安装驱动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-RTL8192EU"><span class="toc-number">2.</span> <span class="toc-text">0x02 RTL8192EU</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x03-%E6%80%BB%E7%BB%93%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">0x03 总结？</span></a></li></ol>
+
 </div>
             </main>
             <aside class="right-column">
@@ -660,7 +585,7 @@ octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">su
     style="padding-right: 2px;">
   </i>目录
 </div>
-<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#0x01-RTL8192FU"><span class="toc-number">1.</span> <span class="toc-text">0x01 RTL8192FU</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%BD%91%E5%8D%A1%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">连接网卡？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.2.</span> <span class="toc-text">寻找网卡驱动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%B9%B6%E5%AE%89%E8%A3%85%E9%A9%B1%E5%8A%A8"><span class="toc-number">1.3.</span> <span class="toc-text">编译并安装驱动</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x02-RTL8192EU"><span class="toc-number">2.</span> <span class="toc-text">0x02 RTL8192EU</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#0x03-%E6%80%BB%E7%BB%93%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">0x03 总结？</span></a></li></ol>
+
     </article>
   
   
@@ -676,22 +601,22 @@ octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">su
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-11-22</div>
-        <a href="/posts/36640/index.html"><div class="recent-posts-item-content">Octane的moeCTF_2022 Writeup</div></a>
+        <a href="/posts/4/index.html"><div class="recent-posts-item-content">Octane的moeCTF_2022 Writeup</div></a>
       </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-11-16</div>
-        <a href="/posts/5352/index.html"><div class="recent-posts-item-content">Octane的TSCTF-J Writeup</div></a>
+        <a href="/posts/3/index.html"><div class="recent-posts-item-content">Octane的TSCTF-J Writeup</div></a>
       </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-11-16</div>
-        <a href="/posts/17920/index.html"><div class="recent-posts-item-content">(水)关于linux系统网卡驱动的安装</div></a>
+        <a href="/posts/2/index.html"><div class="recent-posts-item-content">(水)关于linux系统网卡驱动的安装</div></a>
       </div>
     
       <div class="recent-posts-item">
         <div class="recent-posts-item-title">2022-11-16</div>
-        <a href="/posts/61920/index.html"><div class="recent-posts-item-content">Hello_World</div></a>
+        <a href="/posts/1/index.html"><div class="recent-posts-item-content">Hello_World</div></a>
       </div>
     
   </div>
@@ -721,7 +646,7 @@ octane@octanePC:/mnt/sda/rtl8192eu-linux-5.11.2$ <span class="token function">su
         <a 
           href="/" 
           class="footer-link">
-          Octane的小站
+          Octane的博客
         </a>
       </div>
     </div>
