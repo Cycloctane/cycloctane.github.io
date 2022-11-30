@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+  <meta charset="UTF-8">
+  <meta 
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <meta 
+    http-equiv="X-UA-Compatible" 
+    content="ie=edge">
+  <meta 
+    name="theme-color" 
+    content="#fff" 
+    id="theme-color">
+  <meta 
+    name="description" 
+    content="Octane的博客">
+  <link 
+    rel="icon" 
+    href="/">
+  <title>Octane的 DASCTF 2022 Nov月赛 Writeup</title>
+  
+    
+      <meta 
+        property="og:title" 
+        content="Octane的 DASCTF 2022 Nov月赛 Writeup">
+    
+    
+      <meta 
+        property="og:url" 
+        content="https://cycloctane.github.io/posts/5/index.html">
+    
+    
+      <meta 
+        property="og:img" 
+        content="https://pic.imgdb.cn/item/638767f216f2c2beb1d2843f.png">
+    
+    
+    
+      <meta 
+        property="og:type" 
+        content="article">
+      <meta 
+        property="og:article:published_time" 
+        content="2022-11-30">
+      <meta 
+        property="og:article:modified_time" 
+        content="2022-11-30">
+      <meta 
+        property="og:article:author" 
+        content="Octane">
+      
+        
+          <meta 
+            property="og:article:tag" 
+            content="CTF">
+        
+          <meta 
+            property="og:article:tag" 
+            content="Writeup">
+        
+      
+    
+  
+  
+  <link rel="preload" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css" as="style" >
+  <link rel="preload" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css" as="style" >
+  <link rel="preload" href="/css/main.css" as="style" >
+  
+  <link rel="modulepreload" href="//instant.page/5.1.0">
+  
+  <link rel="stylesheet" href="/css/main.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1946621_i1kgafibvw.css">
+  
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1952792_89b4ac4k4up.css">
+  
+  
+  
+    <link rel="stylesheet" href="/js/lib/lightbox/baguetteBox.min.css">
+  
+  <script>
+    function loadScript(url, cb) {
+      var script = document.createElement('script');
+      script.src = url;
+      if (cb) script.onload = cb;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+    function loadCSS(href, data, attr) {
+      var sheet = document.createElement('link');
+      sheet.ref = 'stylesheet';
+      sheet.href = href;
+      sheet.dataset[data] = attr;
+      document.head.appendChild(sheet);
+    }
+    function changeCSS(cssFile, data, attr) {
+      var oldlink = document.querySelector(data);
+      var newlink = document.createElement("link");
+      newlink.setAttribute("rel", "stylesheet");
+      newlink.setAttribute("href", cssFile);
+      newlink.dataset.prism = attr;
+      document.head.replaceChild(newlink, oldlink);
+    }
+  </script>
+  
+    
+      
+      
+      
+      
+        
+        
+        
+        <script>
+          function prismThemeChange() {
+            if(document.getElementById('theme-color').dataset.mode === 'dark') {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism-tomorrow.min.css', '[data-prism]', 'prism-tomorrow');
+              } else {
+                loadCSS('/js/lib/prism/prism-tomorrow.min.css', 'prism', 'prism-tomorrow');
+              }
+            } else {
+              if(document.querySelector('[data-prism]')) {
+                changeCSS('/js/lib/prism/prism.min.css', '[data-prism]', 'prism');
+              } else {
+                loadCSS('/js/lib/prism/prism.min.css', 'prism', 'prism');
+              }
+            }
+          }
+          prismThemeChange()
+        </script>
+      
+      
+        
+        <link rel="stylesheet" href="/js/lib/prism/prism-line-numbers.min.css">
+      
+    
+  
+  <script>
+    // control reverse button
+    var reverseDarkList = {
+      dark: 'light',
+      light: 'dark'
+    };
+    var themeColor = {
+      dark: '#1c1c1e',
+      light: '#fff'
+    }
+    // get the data of css prefers-color-scheme
+    var getCssMediaQuery = function() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+    // reverse current darkmode setting function
+    var reverseDarkModeSetting = function() {
+      var setting = localStorage.getItem('user-color-scheme');
+      if(reverseDarkList[setting]) {
+        setting = reverseDarkList[setting];
+      } else if(setting === null) {
+        setting = reverseDarkList[getCssMediaQuery()];
+      } else {
+        return;
+      }
+      localStorage.setItem('user-color-scheme', setting);
+      return setting;
+    };
+    // apply current darkmode setting
+  </script>
+  
+    <script>
+      var setDarkmode = function(mode) {
+      var setting = mode || localStorage.getItem('user-color-scheme');
+      if(setting === getCssMediaQuery()) {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else if(reverseDarkList[setting]) {
+        document.documentElement.setAttribute('data-user-color-scheme', setting);
+        document.getElementById('theme-color').content = themeColor[setting];
+        document.getElementById('theme-color').dataset.mode = setting;
+        prismThemeChange();
+      } else {
+        document.documentElement.removeAttribute('data-user-color-scheme');
+        localStorage.removeItem('user-color-scheme');
+        document.getElementById('theme-color').content = themeColor[getCssMediaQuery()];
+        document.getElementById('theme-color').dataset.mode = getCssMediaQuery();
+        prismThemeChange();
+      }
+    };
+    setDarkmode();
+    </script>
+  
+  
+  
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.js" as="script">
+    <link rel="preload" href="/js/lib/lightbox/baguetteBox.min.css" as="style" >
+  
+  
+    <link rel="preload" href="/js/lib/lozad.min.js" as="script">
+  
+  
+  
+  
+    
+    <link rel="prefetch" href="//cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-svg.js" as="script">
+  
+  
+    
+    <link rel="prefetch" href="https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js" as="script">
+  
+  
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="Octane的博客" type="application/atom+xml">
+</head>
+
+  <body>
+    <div class="wrapper">
+       
+      <nav class="navbar">
+  <div class="navbar-logo">
+    <a class="navbar-logo-main" href="/">
+      
+      <span class="navbar-logo-dsc">Octane的博客</span>
+      </a>
+  </div>
+  <div class="navbar-menu">
+    
+      <a 
+        href="/" 
+        class="navbar-menu-item">
+        
+          首页
+        
+      </a>
+    
+      <a 
+        href="/archives" 
+        class="navbar-menu-item">
+        
+          归档
+        
+      </a>
+    
+      <a 
+        href="/tags" 
+        class="navbar-menu-item">
+        
+          标签
+        
+      </a>
+    
+      <a 
+        href="/categories" 
+        class="navbar-menu-item">
+        
+          分类
+        
+      </a>
+    
+      <a 
+        href="/about" 
+        class="navbar-menu-item">
+        
+          关于
+        
+      </a>
+    
+      <a 
+        href="/links" 
+        class="navbar-menu-item">
+        
+          友链
+        
+      </a>
+    
+    <button 
+      class="navbar-menu-item darknavbar navbar-menu-btn" 
+      aria-label="Toggle dark mode"
+      id="dark">
+      <i class="iconfont icon-weather"></i>
+    </button>
+    <button 
+      class="navbar-menu-item searchnavbar navbar-menu-btn" 
+      aria-label="Toggle search"
+      id="search">
+      <!-- <i 
+        class="iconfont icon-search" 
+        style="font-size: 1.2rem; font-weight: 400;">
+      </i> -->
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+        class="iconify iconify--ion" width="28" height="28" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512">
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M256 80a176 176 0 1 0 176 176A176 176 0 0 0 256 80Z"></path>
+        <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="28"
+          d="M232 160a72 72 0 1 0 72 72a72 72 0 0 0-72-72Z"></path>
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="28"
+          d="M283.64 283.64L336 336"></path>
+      </svg>
+    </button>
+  </div>
+</nav> 
+      
+      <div 
+        id="local-search" 
+        style="display: none">
+        <input
+          class="navbar-menu-item"
+          id="search-input"
+          placeholder="请输入搜索内容..." />
+        <div id="search-content"></div>
+      </div>
+      
+      <div class="section-wrap">
+        <div class="container">
+          <div class="columns">
+            <aside class="left-column">
+              
+              <div class="card card-author">
+                
+  <img 
+    src="https://pic.imgdb.cn/item/6374dfbb16f2c2beb1618381.png" 
+    class="author-img"
+    width="88"
+    height="88"
+    alt="author avatar">
+
+<p class="author-name">Octane</p>
+<p class="author-description">OctaneOctaneOctane</p>
+<div class="author-message">
+  <a 
+    class="author-posts-count" 
+    href="/archives">
+    <span>5</span>
+    <span>文章</span>
+  </a>
+  <a 
+    class="author-categories-count" 
+    href="/categories">
+    <span>2</span>
+    <span>分类</span>
+  </a>
+  <a 
+    class="author-tags-count" 
+    href="/tags">
+    <span>3</span>
+    <span>标签</span>
+  </a>
+</div>
+
+  <div class="author-card-society">
+    
+      <div class="author-card-society-icon">
+        <a href="mailto:Octane&lt;Octane-rs@outlook.com&gt;">
+          <i class="iconfont icon-mail society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a target="_blank" rel="noopener" href="https://github.com/Cycloctane">
+          <i class="iconfont icon-github society-icon"></i>
+        </a>
+      </div>
+    
+      <div class="author-card-society-icon">
+        <a href="https://cycloctane.github.io/trackerslist.txt">
+          <i class="iconfont icon-chrome society-icon"></i>
+        </a>
+      </div>
+    
+  </div>
+
+              </div>
+               <div class="sticky-tablet">
+  
+  
+    <article class="display-when-two-columns spacer">
+      <div class="card card-content toc-card">
+        <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E4%BB%99%E5%A5%B3%E4%B8%8B%E5%87%A1"><span class="toc-number">1.1.</span> <span class="toc-text">七仙女下凡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EzUSB-%EF%BC%88%E8%B5%9B%E5%90%8E%E8%87%AA%E8%A1%8C%E8%A7%A3%E5%87%BA%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">EzUSB （赛后自行解出）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-number">2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#eazy-hash"><span class="toc-number">2.1.</span> <span class="toc-text">eazy_hash</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">3.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#babyimg"><span class="toc-number">3.1.</span> <span class="toc-text">babyimg</span></a></li></ol></li></ol>
+      </div>
+    </article>
+  
+  
+  <article class="card card-content categories-widget">
+    <div class="categories-card">
+  <div class="categories-header">
+    <i 
+      class="iconfont icon-fenlei" 
+      style="padding-right: 2px;">
+    </i>分类
+  </div>
+  <div class="categories-list">
+    
+      <a href="/categories/notes/">
+        <div class="categories-list-item">
+          notes
+          <span class="categories-list-item-badge">1</span>
+        </div>
+      </a>
+    
+      <a href="/categories/Writeup/">
+        <div class="categories-list-item">
+          Writeup
+          <span class="categories-list-item-badge">3</span>
+        </div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  <article class="card card-content tags-widget">
+    <div class="tags-card">
+  <div class="tags-header">
+    <i 
+      class="iconfont icon-biaoqian" 
+      style="padding-right: 2px;">
+    </i>热门标签
+  </div>
+  <div class="tags-list">
+    
+      <a 
+        href="/tags/Writeup/" 
+        title="Writeup">
+        <div class="tags-list-item">Writeup</div>
+      </a>
+    
+      <a 
+        href="/tags/CTF/" 
+        title="CTF">
+        <div class="tags-list-item">CTF</div>
+      </a>
+    
+      <a 
+        href="/tags/notes/" 
+        title="notes">
+        <div class="tags-list-item">notes</div>
+      </a>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+            <main class="main-column">
+              
+  <div class="image-wrapper">
+    <img 
+      src="https://pic.imgdb.cn/item/638767f216f2c2beb1d2843f.png" 
+      data-src="https://pic.imgdb.cn/item/638767f216f2c2beb1d2843f.png"
+      srcset="data:image/svg+xml,%3Csvg%20xmlns=&#39;http://www.w3.org/2000/svg&#39;%20viewBox=&#39;0%200%20300%20300&#39;%3E%3C/svg%3E"
+      class="image lozad"
+      alt="Octane的 DASCTF 2022 Nov月赛 Writeup thumbnail">
+  </div>
+
+<article class="card card-content">
+  <header>
+    <h1 class="post-title">
+      Octane的 DASCTF 2022 Nov月赛 Writeup
+    </h1>
+  </header>
+  <div class="post-meta post-show-meta">
+    <time datetime="2022-11-30T14:20:00.000Z">
+      <i 
+        class="iconfont icon-calendar" 
+        style="margin-right: 2px;">
+      </i>
+      <span>2022-11-30</span>
+    </time>
+    
+      <span class="dot"></span>
+      
+        <a 
+          href="/categories/Writeup/" 
+          class="post-meta-link">
+          Writeup
+        </a>
+      
+    
+    
+  </div>
+  
+    <div 
+      class="post-meta post-show-meta" 
+      style="margin-top: -10px;">
+      <div style="display: flex; align-items: center;">
+        <i 
+          class="iconfont icon-biaoqian" 
+          style="margin-right: 2px; font-size: 1.15rem;">
+        </i>
+        
+          
+          <a 
+            href="/tags/CTF/" 
+            class="post-meta-link">
+            CTF
+          </a>
+        
+          
+            <span class="dot"></span>
+          
+          <a 
+            href="/tags/Writeup/" 
+            class="post-meta-link">
+            Writeup
+          </a>
+        
+      </div>
+    </div>
+  
+  </header>
+  <div 
+    id="section" 
+    class="post-content">
+    <p>这次比赛可以说是本人参加的第一次团队赛。和三位同为22届天枢的同学组了个四人小队。队友：@Clovershrub @DoubleLii @Cabelis</p>
+<p>感觉大部分赛题对于我目前的水平来说是比较难的，比赛期间才解出来三道题，最后队伍积分总榜第十三名orz</p>
+<p>但即使只有三道题，也水一篇WP吧。</p>
+<p><img src="/images/005_001.png" alt="005_001" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_001.png" class="lozad post-image"></p>
+<p>比赛地址：<a target="_blank" rel="noopener" href="https://buuoj.cn/match/matches/172">https://buuoj.cn/match/matches/172</a> 似乎因为这次比赛总体解题数量也不多，没有发布官方WP。</p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="七仙女下凡"><a href="#七仙女下凡" class="headerlink" title="七仙女下凡"></a>七仙女下凡</h2><p>&ensp;&ensp;&ensp;&ensp;开赛之后直奔Misc。发现一道久违的图片隐写题！</p>
+<p>&ensp;&ensp;&ensp;&ensp;题目附件一共七张图，图片内容都是相同的。因此很容易想到将图片合并叠加。先观察一下图片的属性：</p>
+<p><img src="/images/005_002.png" alt="005_002" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_002.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;1.png和2.png的分辨率和大小都是相同的，所以第一步应该是将这两个图片合并。用图片隐写的解密工具stegsolve.jar打开1.png，再用Analyse-&gt;Image_Combiner选项与2.png进行合并，观察一下哪种合并方法是合适的。</p>
+<p><img src="/images/005_003.png" alt="005_003" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_003.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;其他合并方法看起来都挺抽象的，只有Vertical_Interlace竖直交错这个选项比较靠谱。把该选项合并的结果保存为solved2.bmp，发现这个图片的尺寸和大小都与3.png相同。大概已经能猜到这道题是怎么回事了。</p>
+<p>&ensp;&ensp;&ensp;&ensp;尝试将solved2.bmp与3.png合并，此时又能观察到用Horizontal_Interlace水平交错这个选项生成的图片solved3.bmp与4.png看起来差不多，大小与分辨率也相同。如此交替着用竖直交错与水平交错来合并上两张图片合并的结果和下一张图片，一直叠加到最后一张图片。得到一张大小约为9MB的长图。将这张图用stegsolve打开观察一下：</p>
+<p><img src="/images/005_004.png" alt="005_004" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_004.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;在RGB三色的plane0通道下能看到这张图片最上部分有明显痕迹，显然是LSB隐写。以RGB顺序提取LSB，可以从得到的数据中发现ffd8ffe1文件头。</p>
+<p><img src="/images/005_005.png" alt="005_005" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_005.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;将这些数据用Save_Bin选项保存为jpg格式的文件，直接将其打开即可得到含有flag的图片：</p>
+<p><img src="/images/005_006.png" alt="005_006" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_006.png" class="lozad post-image"></p>
+<blockquote>
+<p>DASCTF{PnG_havE_tWo_1nTerLaCE_typES}</p>
+</blockquote>
+<p>&ensp;&ensp;&ensp;&ensp;需要注意的是，在将图片逐个合并的过程中一定要按照正确的顺序叠加，即先用stegsolve打开前两张图片合并的结果，再在Image_Combiner选项中选择下一张图片进行叠加。叠加的顺序不同，得到的结果也不同。顺序不正确会导致最终得到的flag图出错。</p>
+<p>&ensp;&ensp;&ensp;&ensp;感觉做这道题时的思路还是比较顺利的。题目不算特别难，但PNG竖直和水平交错的套路还是第一次见到。提交flag后发现居然拿到了全场一血orz</p>
+<p>&ensp;&ensp;</p>
+<h2 id="EzUSB-（赛后自行解出）"><a href="#EzUSB-（赛后自行解出）" class="headerlink" title="EzUSB （赛后自行解出）"></a>EzUSB （赛后自行解出）</h2><p>&ensp;&ensp;&ensp;&ensp;解压题目附件，得到一个4GB大小的文件。看题目描述，这个文件似乎是某个U盘的镜像，需要我们来恢复U盘镜像中的数据，找到flag。</p>
+<p>&ensp;&ensp;&ensp;&ensp;首先简单了解一下一个U盘的文件结构是什么样的。</p>
+<p>&ensp;&ensp;&ensp;&ensp;对于MBR硬盘，其最开始部分，即第一个扇区，存储着MBR，用于记录该块硬盘的基本信息和各分区的所在位置。硬盘的每个分区的最开始部分则存储着DBR，记录了本分区的文件系统。</p>
+<p><img src="/images/005_007.png" alt="005_007" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_007.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;用WinHex打开文件，选择”将镜像文件转换为硬盘”选项。可以看到起始扇区和分区1可以被识别出来，但分区1的文件系统类型是未知的。</p>
+<p><img src="/images/005_008.png" alt="005_008" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_008.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;跳转到分区1查看：</p>
+<p><img src="/images/005_009.png" alt="005_009" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_009.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;该分区的开头第一个扇区本应该存储着DBR记录，但却全都是00。而其之后的几个扇区也没有找到看起来像DBR的东西。该DBR很可能是被故意删掉了。</p>
+<p>&ensp;&ensp;&ensp;&ensp;文件最后还有未分区空间，跳转到这里可以发现一段额外的数据，很明显是zip文件头。</p>
+<p><img src="/images/005_010.png" alt="005_010" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_010.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;将该段十六进制数据保存为zip文件并打开，可以得到一个名为DBR的文件。直接将DBR文件的全部数据插入到分区1的第一个扇区。</p>
+<p><img src="/images/005_011.png" alt="005_011" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_011.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;再保存一下。重新打开，此时Winhex已经能够识别分区1的文件系统了，双击分区1就可以直接看到分区1的文件：</p>
+<p><img src="/images/005_012.png" alt="005_012" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_012.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;发现 机密.zip 。flag应该就是在这个文件内。跳转到存储该文件的扇区，仔细观察，这一堆数据最末尾是 4030B405 ，就是zip文件头的倒序。将从扇区开始到 05 的十六进制数据全都倒序过来，就直接能看到flag：</p>
+<p><img src="/images/005_013.png" alt="005_013" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_013.png" class="lozad post-image"></p>
+<blockquote>
+<p>DASCTF{y0u_Rea11yr3ally_kN0w_th3_DBR!!!}</p>
+</blockquote>
+<hr>
+<p>&ensp;&ensp;&ensp;&ensp;比赛时已经找到了存储 机密.zip 的扇区。但没有看出来zip是倒序存储的，与第四个flag失之交臂…当时还以为是题目的DBR有问题啊orz</p>
+<p>&ensp;&ensp;&ensp;&ensp;后来写wp的时候又发现，直接用DiskGenius的数据恢复，不用修DBR就可以直接找到 机密.zip 的扇区…</p>
+<p>&ensp;&ensp;</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="eazy-hash"><a href="#eazy-hash" class="headerlink" title="eazy_hash"></a>eazy_hash</h2><p>&ensp;&ensp;&ensp;&ensp;先看题目：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Util<span class="token punctuation">.</span>number <span class="token keyword">import</span> bytes_to_long<span class="token punctuation">,</span> long_to_bytes
+<span class="token keyword">from</span> zlib <span class="token keyword">import</span> crc32
+<span class="token keyword">from</span> secret <span class="token keyword">import</span> <span class="token operator">*</span>
+P <span class="token operator">=</span> <span class="token number">93327214260434303138080906179883696131283277062733597039773430143631378719403851851296505697016458801222349445773245718371527858795457860775687842513513120173676986599209741174960099561600915819416543039173509037555167973076303047419790245327596338909743308199889740594091849756693219926218111062780849456373</span>
+<span class="token keyword">def</span> <span class="token function">myhash</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    end <span class="token operator">=</span> <span class="token string">b""</span>
+    bytescipher <span class="token operator">=</span> long_to_bytes<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+    a <span class="token operator">=</span> bytescipher<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token builtin">len</span><span class="token punctuation">(</span>bytescipher<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">8</span><span class="token punctuation">]</span>
+    res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+    res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>long_to_bytes<span class="token punctuation">(</span>crc32<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    t <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>bytescipher<span class="token punctuation">)</span> <span class="token operator">//</span> <span class="token number">8</span><span class="token punctuation">)</span>
+    bytescipher <span class="token operator">=</span> bytescipher<span class="token punctuation">[</span><span class="token builtin">len</span><span class="token punctuation">(</span>bytescipher<span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">8</span><span class="token punctuation">:</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        a <span class="token operator">=</span> bytescipher<span class="token punctuation">[</span>i<span class="token operator">*</span><span class="token number">8</span><span class="token punctuation">:</span>i<span class="token operator">*</span><span class="token number">8</span><span class="token operator">+</span><span class="token number">8</span><span class="token punctuation">]</span>
+        res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>a<span class="token punctuation">)</span>
+        res<span class="token punctuation">.</span>append<span class="token punctuation">(</span>long_to_bytes<span class="token punctuation">(</span>crc32<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> res<span class="token punctuation">:</span>
+        end <span class="token operator">+=</span> i
+    res <span class="token operator">=</span> bytes_to_long<span class="token punctuation">(</span>end<span class="token punctuation">)</span>
+    res <span class="token operator">=</span> <span class="token punctuation">(</span>res <span class="token operator">+</span> <span class="token punctuation">(</span>res <span class="token operator">>></span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">2</span><span class="token operator">**</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span>
+    <span class="token keyword">return</span> res
+<span class="token keyword">def</span> <span class="token function">encode</span><span class="token punctuation">(</span>pt<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    a<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    b<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">]</span>
+    a<span class="token punctuation">.</span>append<span class="token punctuation">(</span>myhash<span class="token punctuation">(</span>pt<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        a<span class="token punctuation">.</span>append<span class="token punctuation">(</span>myhash<span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        secret<span class="token operator">=</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> a<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">*</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">**</span> <span class="token number">2</span> <span class="token operator">+</span> a<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">*</span> a<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">**</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">%</span> P
+        b<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">[</span>a<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>secret<span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> b
+pt <span class="token operator">=</span> bytes_to_long<span class="token punctuation">(</span>flag<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+FLAG<span class="token operator">=</span>encode<span class="token punctuation">(</span>pt<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>FLAG<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment"># 输出略</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&ensp;&ensp;&ensp;&ensp;又是一个自制hash函数的题。之前在moectf做过一道ezhash。</p>
+<p>&ensp;&ensp;&ensp;&ensp;首先看看程序输出是什么东西。显然，程序的结果是一个有两个元素的列表。分析encode函数可知，第一个元素是a[1]，第二个元素是secret，即是(a[0]+a[1]*a[1]+a[2]*a[1]**2+a[3]*a[1]**3)%P的结果。已知a[1]与P，a[2]是myhash(a[1])的结果，a[3]是myhash(a[2])的结果。并且易知a[0]远小于P，因此可以解出a[0]的值。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">a2 <span class="token operator">=</span> myhash<span class="token punctuation">(</span>a1<span class="token punctuation">)</span>
+a3 <span class="token operator">=</span> myhash<span class="token punctuation">(</span>a2<span class="token punctuation">)</span>
+a0 <span class="token operator">=</span> <span class="token punctuation">(</span>a1 <span class="token operator">*</span> a1 <span class="token operator">+</span> a2 <span class="token operator">*</span> a1 <span class="token operator">**</span> <span class="token number">2</span> <span class="token operator">+</span> a3 <span class="token operator">*</span> a1 <span class="token operator">**</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token operator">//</span>P<span class="token operator">*</span>P<span class="token operator">+</span>secret<span class="token operator">-</span><span class="token punctuation">(</span>a1 <span class="token operator">*</span> a1 <span class="token operator">+</span> a2 <span class="token operator">*</span> a1 <span class="token operator">**</span> <span class="token number">2</span> <span class="token operator">+</span> a3 <span class="token operator">*</span> a1 <span class="token operator">**</span> <span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>a0<span class="token punctuation">)</span>
+
+<span class="token comment"># a0 = 2957101726941201632179067084095401321656420466530004630566266527204598229831554134973672777487933790319144163396714765872645685966</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&ensp;&ensp;&ensp;&ensp;a[0]就是flag经过一次myhash运算的结果。直接将a[0]转换为字节，并将结果每隔4个字节取出来8个字节，即可得到flag。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">output <span class="token operator">=</span> <span class="token string">b''</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>long_to_bytes<span class="token punctuation">(</span>a0<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">//</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    output<span class="token operator">+=</span>long_to_bytes<span class="token punctuation">(</span>a0<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">12</span><span class="token operator">*</span>i<span class="token operator">+</span><span class="token number">6</span><span class="token punctuation">:</span><span class="token number">12</span><span class="token operator">*</span>i<span class="token operator">+</span><span class="token number">13</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span>
+
+<span class="token comment"># SCTF&#123;ths_is_th_fe3st_uest1on</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>&ensp;&ensp;&ensp;&ensp;因此得到flag：</p>
+<blockquote>
+<p>DASCTF{th1s_is_the_fe3st_quest1on}</p>
+</blockquote>
+<p>&ensp;&ensp;</p>
+<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><h2 id="babyimg"><a href="#babyimg" class="headerlink" title="babyimg"></a>babyimg</h2><p>&ensp;&ensp;&ensp;&ensp;这次比赛最离谱的一道题…题目给了一张图片和一个程序，需要修好程序，用程序解密图片隐藏的信息才能得到flag</p>
+<p>&ensp;&ensp;&ensp;&ensp;本来是给Reverser做的。但程序似乎很难，各种反动调的机制，给Reverse的同学添了不少麻烦。</p>
+<p>&ensp;&ensp;&ensp;&ensp;作为一名Misc手(?)，听说reverse题里居然有张图，当然要拿过来看一眼了。</p>
+<p><img src="/images/005_014.png" alt="005_014" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_014.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;看起来很图片隐写啊！这样的图片也和几种隐写方法有点像。但既然是逆向题，应该不会用图片隐写的套路吧…</p>
+<p>&ensp;&ensp;&ensp;&ensp;先猜一下是什么隐写。尝试将图片旋转90度，用stegsolve打开，选择StereogramSolver，调整offset为1。</p>
+<p><img src="/images/005_015.png" alt="005_015" srcset="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20300%20300'%3E%3C/svg%3E" data-src="/images/005_015.png" class="lozad post-image"></p>
+<p>&ensp;&ensp;&ensp;&ensp;居然真就直接出flag。给跪了。</p>
+<p>orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz orz </p>
+
+  </div>
+  <div>
+    
+      <div 
+        class="post-note note-info copyright" 
+        style="margin-top: 42px">
+        <p>
+          <span style="font-weight: bold;">作者：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="/about">
+            Octane
+          </a>
+        </p>
+        <p>
+          <span style="font-weight: bold;">文章链接：</span><a 
+            target="_blank" 
+            rel="nofollow noopener noreferrer" 
+            href="https://cycloctane.github.io/posts/5/index.html">
+            https://cycloctane.github.io/posts/5/index.html
+          </a>
+        </p>
+        <p><span style="font-weight: bold;">版权声明：</span>转载请注明出处！</p>
+      </div>
+    
+  </div>
+</article>
+<div class="nav">
+  
+  
+    <div class="nav-item-next">
+      <a 
+        href="/posts/4/index.html" 
+        class="nav-link">
+        <div>
+          <div class="nav-label">下一篇</div>
+          
+            <div class="nav-title">Octane的moeCTF_2022 Writeup </div>
+          
+        </div>
+        <i class="iconfont icon-right nav-next-icon"></i>
+      </a>
+    </div>
+  
+</div>
+
+  <div 
+    class="card card-content comment-card" 
+    style="margin-top: 16px;">
+    <div class="comment-card-title">评论</div>
+    
+  <div id="vcomments"></div>
+  
+  <script>
+    loadScript("https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js");
+    var oldLoadVa = window.onload;
+    window.onload = function () {
+      oldLoadVa && oldLoadVa();
+      new Valine({
+        el: '#vcomments',
+        appId: 'YTfylcmjjykCaUDdxswv7KLB-gzGzoHsz',
+        appKey: 'KeL0Zx7FGhq6MV3RH1pzcNiH',
+        placeholder: '(/≧▽≦)/',
+        path: window.location.pathname,
+        avatar: 'hide',
+        meta: ["nick","mail"],
+        pageSize: '10',
+        lang: '',
+        visitor: 'true',
+        highlight: true,
+        recordIP: true,
+        
+        serverURLs: 'https://ytfylcmj.lc-cn-n1-shared.com',
+        
+        
+        
+        enableQQ: 'true',
+        requiredFields: [],
+      });
+    };
+  </script>
+
+  </div>
+
+<div 
+  class="card card-content toc-card" 
+  id="mobiletoc">
+  <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E4%BB%99%E5%A5%B3%E4%B8%8B%E5%87%A1"><span class="toc-number">1.1.</span> <span class="toc-text">七仙女下凡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EzUSB-%EF%BC%88%E8%B5%9B%E5%90%8E%E8%87%AA%E8%A1%8C%E8%A7%A3%E5%87%BA%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">EzUSB （赛后自行解出）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-number">2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#eazy-hash"><span class="toc-number">2.1.</span> <span class="toc-text">eazy_hash</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">3.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#babyimg"><span class="toc-number">3.1.</span> <span class="toc-text">babyimg</span></a></li></ol></li></ol>
+</div>
+            </main>
+            <aside class="right-column">
+              <div class="sticky-widescreen">
+  
+  
+    <article class="card card-content toc-card">
+      <div class="toc-header">
+  <i 
+    class="iconfont icon-menu" 
+    style="padding-right: 2px;">
+  </i>目录
+</div>
+<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E4%BB%99%E5%A5%B3%E4%B8%8B%E5%87%A1"><span class="toc-number">1.1.</span> <span class="toc-text">七仙女下凡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EzUSB-%EF%BC%88%E8%B5%9B%E5%90%8E%E8%87%AA%E8%A1%8C%E8%A7%A3%E5%87%BA%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">EzUSB （赛后自行解出）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-number">2.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#eazy-hash"><span class="toc-number">2.1.</span> <span class="toc-text">eazy_hash</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">3.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#babyimg"><span class="toc-number">3.1.</span> <span class="toc-text">babyimg</span></a></li></ol></li></ol>
+    </article>
+  
+  
+  <article class="card card-content">
+    <div class="recent-posts-card">
+  <div class="recent-posts-header">
+    <i 
+      class="iconfont icon-wenzhang_huaban" 
+      style="padding-right: 2px;">
+    </i>最近文章
+  </div>
+  <div class="recent-posts-list">
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-11-30</div>
+        <a href="/posts/5/index.html"><div class="recent-posts-item-content">Octane的 DASCTF 2022 Nov月赛 Writeup</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-11-22</div>
+        <a href="/posts/4/index.html"><div class="recent-posts-item-content">Octane的moeCTF_2022 Writeup</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-11-16</div>
+        <a href="/posts/3/index.html"><div class="recent-posts-item-content">Octane的TSCTF-J Writeup</div></a>
+      </div>
+    
+      <div class="recent-posts-item">
+        <div class="recent-posts-item-title">2022-11-16</div>
+        <a href="/posts/2/index.html"><div class="recent-posts-item-content">(水)关于linux系统网卡驱动的安装</div></a>
+      </div>
+    
+  </div>
+</div>
+  </article>
+  
+  
+</div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </div>
+     
+    <footer class="footer">
+  <div class="footer-container">
+    <div>
+      <div class="footer-dsc">
+        <span>
+          Copyright ©
+          
+            2022
+          
+          
+        </span>
+        &nbsp;
+        <a 
+          href="/" 
+          class="footer-link">
+          Octane的博客
+        </a>
+      </div>
+    </div>
+
+    
+      <div class="footer-dsc">
+        
+          Powered by
+          <a 
+            href="https://hexo.io/" 
+            class="footer-link" 
+            target="_blank" 
+            rel="nofollow noopener noreferrer">
+            &nbsp;Hexo
+          </a>
+        
+        
+        
+      </div>
+    
+    
+    
+    
+      <div class="footer-dsc">
+        
+        
+        
+          本站总访客数<span id="busuanzi_value_site_uv"></span>次
+        
+      </div>
+      
+    
+</footer>
+ 
+    
+  <a 
+    role="button" 
+    id="scrollbutton" 
+    class="basebutton" 
+    aria-label="回到顶部">
+    <i class="iconfont icon-arrowleft button-icon"></i>
+  </a>
+
+<a 
+  role="button" 
+  id="menubutton"
+  aria-label="menu button"
+  class="basebutton">
+  <i class="iconfont icon-menu button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="popbutton" 
+  class="basebutton" 
+  aria-label="控制中心">
+  <i class="iconfont icon-expand button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="darkbutton" 
+  class="basebutton darkwidget" 
+  aria-label="夜色模式">
+  <i class="iconfont icon-weather button-icon"></i>
+</a>
+<a 
+  role="button" 
+  id="searchbutton" 
+  class="basebutton searchwidget" 
+  aria-label="搜索">
+  <i class="iconfont icon-search button-icon"></i>
+</a> 
+     
+     
+      
+ 
+     
+     
+      <script>
+  var addImgLayout = function () {
+    var img = document.querySelectorAll('.post-content img')
+    var i
+    for (i = 0; i < img.length; i++) {
+      var wrapper = document.createElement('a')
+      wrapper.setAttribute('href', img[i].getAttribute('data-src'))
+      wrapper.setAttribute('aria-label', 'illustration')
+      wrapper.style.cssText =
+        'width: 100%; display: flex; justify-content: center;'
+      if (img[i].alt) wrapper.dataset.caption = img[i].alt
+      wrapper.dataset.nolink = true
+      img[i].before(wrapper)
+      wrapper.append(img[i])
+      var divWrap = document.createElement('div')
+      divWrap.classList.add('gallery')
+      wrapper.before(divWrap)
+      divWrap.append(wrapper)
+    }
+    baguetteBox.run('.gallery')
+  }
+</script>
+<script>
+  loadScript(
+    "/js/lib/lightbox/baguetteBox.min.js",
+    addImgLayout
+  )
+</script>
+ 
+     
+     
+    <script src="/js/main.js"></script> 
+    
+      <script> 
+        loadScript('/js/lib/busuanzi.min.js') 
+      </script>
+     
+    
+      <script>
+        var addLazyload = function () {
+          var observer = lozad('.lozad', {
+            load: function (el) {
+              el.srcset = el.getAttribute('data-src')
+            },
+            loaded: function (el) {
+              el.classList.add('loaded')
+            },
+          })
+          observer.observe()
+        }
+      </script>
+      <script>
+        loadScript('/js/lib/lozad.min.js', addLazyload)
+      </script>
+    
+    <script src="//instant.page/5.1.0" type="module"
+      integrity="sha384-by67kQnR+pyfy8yWP4kPO12fHKRLHZPfEsiSXR8u2IKcTdxD805MGUXBzVPnkLHw"></script>
+    
+    
+      <script>
+        setTimeout(() => {localSearch("search.json")}, 0)
+      </script>
+    
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"left","width":120,"height":240},"mobile":{"show":true},"react":{"opacity":0.6},"log":false});</script></body>
+</html>
