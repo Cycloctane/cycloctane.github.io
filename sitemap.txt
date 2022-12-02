@@ -1,7 +1,7 @@
+https://cycloctane.github.io/about/index.html
 https://cycloctane.github.io/posts/5/index.html
 https://cycloctane.github.io/posts/1/index.html
 https://cycloctane.github.io/posts/2/index.html
 https://cycloctane.github.io/posts/3/index.html
 https://cycloctane.github.io/posts/4/index.html
-https://cycloctane.github.io/about/index.html
 https://cycloctane.github.io/
